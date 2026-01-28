@@ -6,7 +6,7 @@ import random
 class CommandTransmission():
     def __init__(self):
         # Storing the IP addresses in a dict so that addressing is in constant time
-        self.esp_id = { 1: "10.42.0.30" }
+        self.esp_id = { 1: "192.168.1.50" }
         self.ESP32_PORT = 4210
         self.connections = {}        
 

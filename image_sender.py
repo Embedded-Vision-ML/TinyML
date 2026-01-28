@@ -1,7 +1,7 @@
 import os
 import numpy as np
 import cv2
-from sender_class import CommandTransmission
+from sender_helper import CommandTransmission
 
 
 '''
@@ -39,5 +39,9 @@ if __name__=="__main__":
         flattened_bytes = flattened_image.astype(np.uint8).tobytes()
 
         sender_obj.send_data(1, flattened_bytes)
+
+        if debug:
+            for byte in flattened_bytes:
+                print(f"{byte:02X}")
 
     sender_obj.close()

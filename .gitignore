@@ -1,4 +1,5 @@
 *.jpg
 *.png
 *.jpeg
-wifi_credentials.h
+ImageReceiver/wifi_credentials.h
+*.tmp

@@ -1,6 +1,6 @@
 #include <WiFi.h>
 #include <WiFiServer.h>
-#include <wifi_credentials.h>
+#include <../wifi_credentials.h>
 
 ////////////
 // GLOBAL //
@@ -11,9 +11,9 @@ const char* ssid = WIFI_SSID;
 const char* password = WIFI_PASSWORD;
 
 // Manually set IP address
-IPAddress local_IP(10, 42, 0, 30);   // Choose something outside DHCP range (e.g., .50)
-IPAddress gateway(10, 42, 0, 1);     // Usually the hotspot IP
-IPAddress subnet(255, 255, 255, 0);      // Standard subnet mask
+IPAddress local_IP(192, 168, 1, 50); // Choose something outside DHCP range (e.g., .50)
+IPAddress gateway(192, 168, 1, 254); // Usually the hotspot IP
+IPAddress subnet(255, 255, 255, 0);  // Standard subnet mask
 
 
 // ---- TCP settings ----
@@ -22,6 +22,7 @@ WiFiClient client;
 
 const int ARRAY_SIZE = 9216;
 uint8_t imageBuffer[ARRAY_SIZE];
+bool debug = false;
 
 
 ///////////
@@ -83,13 +84,13 @@ void loop() {
             Serial.print(ARRAY_SIZE);
             Serial.println(" bytes");
             
-            // Print first 20 bytes as example
-            Serial.print("First 20 bytes: ");
-            for (int i = 0; i < 20; i++) {
-                Serial.print(imageBuffer[i], HEX);
-                Serial.print(" ");
+            if (debug) {
+                Serial.print("All bytes:\n");
+                for (int i = 0; i < ARRAY_SIZE; i++) {
+                    Serial.println(imageBuffer[i], HEX);
+                }
+                Serial.println();
             }
-            Serial.println();
 
             // Echo back confirmation
             client.print("Array received successfully!");
