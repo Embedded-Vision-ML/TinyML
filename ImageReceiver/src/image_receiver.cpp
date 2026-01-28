@@ -1,13 +1,14 @@
 #include <WiFi.h>
 #include <WiFiServer.h>
+#include <wifi_credentials.h>
 
 ////////////
 // GLOBAL //
 ////////////
 
 // Hotspot credentials
-const char* ssid = "blinky";
-const char* password = "swarm_net";
+const char* ssid = WIFI_SSID;
+const char* password = WIFI_PASSWORD;
 
 // Manually set IP address
 IPAddress local_IP(10, 42, 0, 30);   // Choose something outside DHCP range (e.g., .50)
